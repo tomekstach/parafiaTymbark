@@ -19,73 +19,22 @@ function custom_astra_content_loop()
     global $wp;
     $print = $_REQUEST['print'] ?? false;
     $print = $print !== false ? true : false;
-    $intencjeTymbark = get_field('intencje_tymbark');
 
-    $dniTygodnia = [
-        'Niedziela',
-        'Poniedziałek',
-        'Wtorek',
-        'Środa',
-        'Czwartek',
-        'Piątek',
-        'Sobota',
-    ];
+    echo '<p>Następujące osoby mają zamiar w najbliższym czasie zawrzeć sakramentalne małżeństwo:</p>';
+    $nrZapowiedzi = get_field('nr');
+    $narzeczony = '<strong>' . explode('z parafii', get_field('narzeczony'))[0] . '</strong> z parafii ' . explode('z parafii', get_field('narzeczony'))[1];
+    $narzeczona = '<strong>' . explode('z parafii', get_field('narzeczona'))[0] . '</strong> z parafii ' . explode('z parafii', get_field('narzeczona'))[1];
 
-    echo '<h4>Intencje Tymbark</h4>';
-
-    foreach ($intencjeTymbark as $intencja) {
-        echo '<ul>';
-        foreach ($intencja as $wpis) {
-            echo '<li>' . $wpis['data'] . ' | ' . $dniTygodnia[date('w', strtotime($wpis['data']))];
-            echo '<ul>';
-            foreach ($wpis['godzina'] as $godzina) {
-                echo '<li>' . $godzina['godzina_mszy'];
-                echo '<ul>';
-                foreach ($godzina['nazwa'] as $nazwa) {
-                    echo '<li>' . $nazwa['nazwa_intencji'] . '</li>';
-                }
-                echo '</ul>';
-                echo '</li>';
-            }
-            echo '</ul>';
-            echo '</li>';
-        }
-        echo '</ul>';
+    if (strlen(trim($nrZapowiedzi)) > 0) {
+        echo '<p>' . $nrZapowiedzi . '</p>';
     }
 
-    echo '<h4>Intencje Piekiełko</h4>';
-
-    $intencjePiekielko = get_field('intencje_piekielko');
-
-    foreach ($intencjePiekielko as $intencja) {
-        echo '<ul>';
-        foreach ($intencja as $wpis) {
-            echo '<li>' . $wpis['data'] . ' | ' . $dniTygodnia[date('w', strtotime($wpis['data']))];
-            echo '<ul>';
-            foreach ($wpis['godzina'] as $godzina) {
-                echo '<li>' . $godzina['godzina_mszy'];
-                echo '<ul>';
-                foreach ($godzina['nazwa'] as $nazwa) {
-                    echo '<li>' . $nazwa['nazwa_intencji'] . '</li>';
-                }
-                echo '</ul>';
-                echo '</li>';
-            }
-            echo '</ul>';
-            echo '</li>';
-        }
-        echo '</ul>';
-    }
-
-    echo '<h4>Uwagi</h4>';
-
-    $intencjaUwagi = get_field('intencja_uwagi');
-
-    echo '<ul>';
-    foreach ($intencjaUwagi as $uwaga) {
-        echo '<li>' . $uwaga['uwagi'] . '</li>';
-    }
-    echo '</ul>';
+    echo '<p>' . $narzeczony . '</p>';
+    echo '<p>i</p>';
+    echo '<p>' . $narzeczona . '</p>';
+    echo '<p>Na podstawie §1066 i §1069 Kodeksu Prawa Kanonicznego: ktokolwiek wiedziałby o przeszkodzie utrudniającej lub uniemożliwiającej zawarcie małżeństwa powinien wyjawić ją w kancelarii parafialnej.</p>';
+    echo '<p><strong><em>Tymbark ' . get_field('data') . '</em></strong></p>';
+    echo '<p>„Administrator danych osobowych informuje, że dane osobowe dotyczące zapowiedzi przedślubnych zawarte na stronie parafii Narodzenia Najświętszej Maryi Panny w Tymbarku umieszczone zostały za zgodą osób, których dane dotyczą”</p>';
 
     if ((current_user_can('administrator') or current_user_can('author') or current_user_can('editor') or current_user_can('contributor')) and $print === false) {
         $current_url = home_url(add_query_arg(array(), $wp->request));
@@ -109,7 +58,7 @@ if ($print === false) {
 }
 ?>
 
-<?php if (astra_page_layout() == 'left-sidebar'): ?>
+<?php if (astra_page_layout() == 'left-sidebar' and $print === false): ?>
 
 	<?php get_sidebar(); ?>
 
@@ -125,7 +74,7 @@ if ($print === false) {
 
 	</div><!-- #primary -->
 
-    <?php if (astra_page_layout() == 'right-sidebar' and $print === false): ?>
+<?php if (astra_page_layout() == 'right-sidebar' and $print === false): ?>
 
 	<?php get_sidebar(); ?>
 
