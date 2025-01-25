@@ -44,10 +44,9 @@ function display_pogrzeb_posts()
 
     if ($pogrzeb_query->have_posts()) {
         $counter = $pogrzeb_query->post_count;
-        echo $counter;
-        $i      = 1;
-        $output = '
-    <div class="wp-block-uagb-container uagb-block-a31af704">
+        $i       = 1;
+        $output  = '
+    <div class="wp-block-uagb-container uagb-block-a31af704" id="died-info-box-79996f03">
         <div class="wp-block-uagb-info-box uagb-block-79996f03 uagb-infobox__content-wrap  uagb-infobox-icon-above-title uagb-infobox-image-valign-middle wp-block-uagb-info-box--has-margin">
             <div class="uagb-infobox-margin-wrapper">
                 <div class="uagb-ifb-content">
