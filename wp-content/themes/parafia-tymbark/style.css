@@ -10,6 +10,10 @@ Text Domain: parafia-tymbark
 Template: astra
 */
 
+summary::-webkit-details-marker {
+    display: none;
+}
+
 #died-info-box-79996f03.wp-block-uagb-container.uagb-block-a31af704 {
     box-shadow: 0px 0px #00000070;
     padding-top: 50px;
@@ -76,10 +80,15 @@ Template: astra
 .intentions {
     border: 1px solid #dcdcdc;
     width: 100%;
+    margin: 20px 0 0 0;
 }
 
 .intentions p {
     margin: 0;
+}
+
+p.print-button {
+    padding: 20px 0;
 }
 
 .items {
@@ -135,4 +144,38 @@ body.print-print .navigation.post-navigation {
     .items {
         border-left: 0;
     }
+}
+
+.table_intentions {
+    overflow: auto;
+    width: 100%;
+}
+
+.table_intentions table {
+    border: 1px solid #dcdcdc;
+    height: 100%;
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+}
+
+.table_intentions caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table_intentions th {
+    border: 1px solid #dcdcdc;
+    background-color: #f5f5f5;
+    color: #000000;
+    padding: 5px;
+}
+
+.table_intentions td {
+    border: 1px solid #dcdcdc;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 5px;
 }
