@@ -48,7 +48,7 @@ function display_pogrzeb_posts()
         $output = '
     <div class="wp-block-uagb-container uagb-block-a31af704" id="died-info-box-79996f03">
         <div class="wp-block-uagb-info-box uagb-block-79996f03 uagb-infobox__content-wrap  uagb-infobox-icon-above-title uagb-infobox-image-valign-middle wp-block-uagb-info-box--has-margin">
-            <div class="uagb-infobox-margin-wrapper">
+            <div class="uagb-infobox-margin-wrapper zm-info">
                 <div class="uagb-ifb-content">
                     <div class="uagb-ifb-image-content"><img decoding="async" data-src="https://parafia.astosoft.pl/wp-content/uploads/2024/12/christian-cross.svg" alt="" width="40" height="40" loading="lazy" src="https://parafia.astosoft.pl/wp-content/uploads/2024/12/christian-cross.svg" class=" lazyloaded" style="--smush-placeholder-width: 40px; --smush-placeholder-aspect-ratio: 40/40;"><noscript><img decoding="async" src="https://parafia.astosoft.pl/wp-content/uploads/2024/12/christian-cross.svg" alt="" width="40" height="40" loading="lazy"/></noscript></div>
                     <div class="uagb-ifb-title-wrap">
