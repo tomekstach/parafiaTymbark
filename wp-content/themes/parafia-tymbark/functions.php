@@ -19,7 +19,7 @@ define('CHILD_THEME_PARAFIA_TYMBARK_VERSION', '1.0.0');
 function child_enqueue_styles()
 {
 
-    wp_enqueue_style('parafia-tymbark-theme-css', get_stylesheet_directory_uri() . '/style.css?v=20250118003', ['astra-theme-css'], CHILD_THEME_PARAFIA_TYMBARK_VERSION, 'all');
+    wp_enqueue_style('parafia-tymbark-theme-css', get_stylesheet_directory_uri() . '/style.css?v=20250313003', ['astra-theme-css'], CHILD_THEME_PARAFIA_TYMBARK_VERSION, 'all');
 
 }
 
@@ -34,7 +34,7 @@ function set_acf_settings()
 function display_pogrzeb_posts()
 {
     $args = [
-        'post_type' => 'pogrzeb',
+        'post_type'      => 'pogrzeb',
         'posts_per_page' => -1,
     ];
 
@@ -44,8 +44,8 @@ function display_pogrzeb_posts()
 
     if ($pogrzeb_query->have_posts()) {
         $counter = $pogrzeb_query->post_count;
-        $i = 1;
-        $output = '
+        $i       = 1;
+        $output  = '
     <div class="wp-block-uagb-container uagb-block-a31af704" id="died-info-box-79996f03">
         <div class="wp-block-uagb-info-box uagb-block-79996f03 uagb-infobox__content-wrap  uagb-infobox-icon-above-title uagb-infobox-image-valign-middle wp-block-uagb-info-box--has-margin">
             <div class="uagb-infobox-margin-wrapper zm-info">
@@ -83,7 +83,7 @@ add_shortcode('pogrzeb_posts', 'display_pogrzeb_posts');
 
 function default_strings_callback($strings)
 {
-    $strings['string-next-text'] = __('Dalej', 'astra');
+    $strings['string-next-text']     = __('Dalej', 'astra');
     $strings['string-previous-text'] = __('Wstecz', 'astra');
     return $strings;
 }

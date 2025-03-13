@@ -23,8 +23,9 @@
         $rows = get_field('ogloszenie');
 
         $i = 1;
+        echo '<ol>';
         foreach ($rows as $row) {
-            echo '<p>' . $i . '. ' . nl2br($row['tresc_ogloszenia']) . '</p>';
+            echo '<li>' . nl2br($row['tresc_ogloszenia']);
             if ($row['tak']) {
                 echo '<ul>';
                 foreach ($row['podpunkt'] as $podpunkt) {
@@ -32,8 +33,10 @@
                 }
                 echo '</ul>';
             }
+            echo '</li>';
             $i++;
         }
+        echo '</ol>';
 
         if ((current_user_can('administrator') or current_user_can('author') or current_user_can('editor') or current_user_can('contributor')) and $print === false) {
             $current_url = home_url(add_query_arg([], $wp->request));
@@ -51,7 +54,7 @@
         echo '<html>';
         echo '<head>';
         echo '<title>Parafia Tymbark</title>';
-        echo '<link rel="stylesheet" href="/wp-content/themes/parafia-tymbark/style.css">';
+        echo '<link rel="stylesheet" href="/wp-content/themes/parafia-tymbark/style.css?v=20250313001">';
         echo '</head>';
         echo '<body class="print-print">';
     }
@@ -63,7 +66,7 @@
 
 <?php endif?>
 
-	<div id="primary"	                 	                 	                 	                 	                 	                 	                 	                  <?php astra_primary_class(); ?>>
+	<div id="primary"	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                  <?php astra_primary_class(); ?>>
 
 		<?php astra_primary_content_top(); ?>
 
