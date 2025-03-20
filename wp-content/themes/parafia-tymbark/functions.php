@@ -19,7 +19,7 @@ define('CHILD_THEME_PARAFIA_TYMBARK_VERSION', '1.0.0');
 function child_enqueue_styles()
 {
 
-    wp_enqueue_style('parafia-tymbark-theme-css', get_stylesheet_directory_uri() . '/style.css?v=20250313003', ['astra-theme-css'], CHILD_THEME_PARAFIA_TYMBARK_VERSION, 'all');
+    wp_enqueue_style('parafia-tymbark-theme-css', get_stylesheet_directory_uri() . '/style.css?v=20250315010', ['astra-theme-css'], CHILD_THEME_PARAFIA_TYMBARK_VERSION, 'all');
 
 }
 

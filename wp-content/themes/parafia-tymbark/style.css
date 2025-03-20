@@ -11,13 +11,13 @@ Template: astra
 */
 
 @font-face {
-    font-family: 'Book Antiqua';
-    src: url('/wp-content/themes/parafia-tymbark/fonts/bookantiqua.ttf') format('truetype');
+	font-family: 'Book Antiqua';
+	src: url('/wp-content/themes/parafia-tymbark/fonts/bookantiqua.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'Book Antiqua - bold';
-    src: url('/wp-content/themes/parafia-tymbark/fonts/bookantiqua_bold.ttf') format('truetype');
+	font-family: 'Book Antiqua - bold';
+	src: url('/wp-content/themes/parafia-tymbark/fonts/bookantiqua_bold.ttf') format('truetype');
 }
 
 summary::-webkit-details-marker {
@@ -125,8 +125,13 @@ p.print-button {
 	margin: 10px 0;
 }
 
+h2.int-tym, h2.int-piek, h2.int-uwagi {
+    font-size: 1.2941176470588rem;
+    line-height: 1.3em;
+}
+
 .type-ogloszenie li {
-    padding-bottom: 10px;
+	padding-bottom: 10px;
 }
 
 body.print-print .navigation.post-navigation {
@@ -134,22 +139,91 @@ body.print-print .navigation.post-navigation {
 }
 
 body.print-print h1 {
-    text-align: center;
-    font-size: 16pt;
-    font-family: 'Book Antiqua - bold', Helvetica, sans-serif;
+	text-align: center;
+	font-size: 16pt;
+	font-family: 'Book Antiqua - bold', Helvetica, sans-serif;
+    margin-top: 6px;
+    margin-bottom: 6px;
 }
 
 body.print-print p,
-body.print-print li {
-    font-size: 14pt;
-    font-family: 'Book Antiqua', Helvetica, sans-serif;
+body.print-print li,
+body.print-print div {
+	font-size: 14pt;
+	font-family: 'Book Antiqua', Helvetica, sans-serif;
+}
+
+body.print-print .intentions p,
+body.print-print .intentions li,
+body.print-print .intentions div {
+	font-size: 13pt;
+	font-family: 'Book Antiqua', Helvetica, sans-serif;
 }
 
 body.print-print li {
-    padding-bottom: 8px;
+	padding-bottom: 8px;
 }
 
-@media (max-width: 768px) {
+body.print-print h2.new-page {
+    page-break-before: always;
+}
+
+body.print-print h2.int-tym,
+body.print-print h2.int-uwagi {
+	display: none;
+}
+
+body.print-print div.intentions {
+	border: 1px solid #000;
+    margin: 10px 0 0 0;
+}
+
+body.print-print div.items {
+    width: 83%;
+    border-left: 0;
+}
+
+body.print-print div.intentions.new-page {
+	page-break-before: always;
+}
+
+body.print-print div.day {
+	flex: 1;
+    width: 17%;
+}
+
+body.print-print div.hour {
+    width: 10%;
+}
+
+body.print-print div.item {
+	border-left: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-top: 0;
+}
+
+body.print-print div.item:last-child {
+    border-bottom: 0;
+}
+
+body.print-print div.intentions ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+body.print-print div.name {
+	/* flex: 1; */
+	margin: 0;
+	padding: 5px 10px;
+	border-left: 1px solid #000;
+    width: 90%;
+}
+
+body.print-print div.int-cont-uwagi {
+    margin-top: 20px;
+}
+
+@media only screen and (max-width: 768px) {
 	.intentions {
 		flex-direction: column;
 	}
