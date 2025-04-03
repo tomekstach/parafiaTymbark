@@ -36,9 +36,8 @@
             // Get the year from the request
             $year = $_REQUEST['rok'] ?? date('Y');
 
-            // Get all posts which has type 'intencja-mszalna' and has the ACF field 'data' in the ACF field 'intencje_piekielko' equal to the month and year using standard mysql query order by created date
-            $intencjePiekielkoPosts = $wpdb->get_results("SELECT ID, post_date FROM `" . $wpdb->posts . "` WHERE post_type = 'intencja-mszalna' AND ID IN (SELECT post_id FROM `" . $wpdb->postmeta . "` WHERE meta_key LIKE 'intencje_piekielko_intencja_piek_%' AND meta_value LIKE '$year$month%') ORDER BY post_date");
-            // $intencjePiekielkoPosts = $wpdb->get_results("SELECT ID,  FROM `" . $wpdb->posts . "` WHERE post_type = 'intencja-mszalna' AND ID IN (SELECT post_id FROM `" . $wpdb->postmeta . "` WHERE meta_key LIKE 'intencje_piekielko_intencja_piek_%' AND meta_value LIKE '$year$month%')");
+            // Get all posts which has type 'intencja-mszalna' and has the ACF field 'data' in the ACF field 'intencje_piekielko' equal to the month and year using standard mysql query order by menu order
+            $intencjePiekielkoPosts = $wpdb->get_results("SELECT ID, post_date, menu_order FROM `" . $wpdb->posts . "` WHERE post_type = 'intencja-mszalna' AND ID IN (SELECT post_id FROM `" . $wpdb->postmeta . "` WHERE meta_key LIKE 'intencje_piekielko_intencja_piek_%' AND meta_value LIKE '$year$month%') ORDER BY menu_order DESC");
 
             foreach ($intencjePiekielkoPosts as $intencja) {
                 $intencja          = get_post($intencja->ID);
@@ -104,7 +103,7 @@
         echo '<html>';
         echo '<head>';
         echo '<title>Parafia Tymbark</title>';
-        echo '<link rel="stylesheet" href="/wp-content/themes/parafia-tymbark/style.css?v=20250315010">';
+        echo '<link rel="stylesheet" href="/wp-content/themes/parafia-tymbark/style.css?v=20250403001">';
         echo '</head>';
         echo '<body class="print-print">';
     }
@@ -116,7 +115,7 @@
 
 <?php endif?>
 
-	<div id="primary"	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                  <?php astra_primary_class(); ?>>
+	<div id="primary"	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                  <?php astra_primary_class(); ?>>
 
 		<?php astra_primary_content_top(); ?>
 

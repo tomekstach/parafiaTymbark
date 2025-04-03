@@ -78,7 +78,7 @@
         echo '<html>';
         echo '<head>';
         echo '<title>Parafia Tymbark</title>';
-        echo '<link rel="stylesheet" href="/wp-content/themes/parafia-tymbark/style.css?v=20250315010">';
+        echo '<link rel="stylesheet" href="/wp-content/themes/parafia-tymbark/style.css?v=20250403001">';
         echo '</head>';
         echo '<body class="print-print">';
     }
