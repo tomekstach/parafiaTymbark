@@ -38,7 +38,7 @@
             $classNewPage = '';
         }
 
-        echo '<h2 class="int-piek ' . $classNewPage . '">Msze św. w kaplicy w Piekiełku</h2>';
+        // echo '<h2 class="int-piek ' . $classNewPage . '">Msze św. w kaplicy w Piekiełku</h2>';
 
         foreach ($intencjePiekielko['intencja_piek'] as $wpis) {
             if ($wpis['nowa_strona']) {
@@ -76,17 +76,17 @@
             echo '</div>';
         }
 
-        // $intencjaUwagi = get_field('intencja_uwagi');
+        $intencjaUwagi = get_field('intencja_uwagi_piek');
 
-        // if (is_array($intencjaUwagi)) {
-        //     echo '<h2 class="int-uwagi">Uwagi</h2>';
-        //     echo '<div class="int-cont-uwagi">';
+        if (is_array($intencjaUwagi)) {
+            echo '<h2 class="int-uwagi">Uwagi</h2>';
+            echo '<div class="int-cont-uwagi">';
 
-        //     foreach ($intencjaUwagi as $uwaga) {
-        //         echo '<div>' . $uwaga['uwagi'] . '</div>';
-        //     }
-        //     echo '</div>';
-        // }
+            foreach ($intencjaUwagi as $uwaga) {
+                echo '<div>' . $uwaga['uwagi'] . '</div>';
+            }
+            echo '</div>';
+        }
 
         if ((current_user_can('administrator') or current_user_can('author') or current_user_can('editor') or current_user_can('contributor')) and $print === false) {
             // Get current URL in any case (also when the page is not pulished)
@@ -122,7 +122,7 @@
 
 <?php endif?>
 
-	<div id="primary"	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                  <?php astra_primary_class(); ?>>
+	<div id="primary"	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                  <?php astra_primary_class(); ?>>
 
 		<?php astra_primary_content_top(); ?>
 
