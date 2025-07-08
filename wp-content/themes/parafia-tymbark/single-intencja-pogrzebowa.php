@@ -17,26 +17,38 @@
     function custom_astra_content_loop()
     {
         global $wp;
-        $print = $_REQUEST['print'] ?? false;
-        $print = $print !== false ? true : false;
+        $print    = $_REQUEST['print'] ?? false;
+        $print    = $print !== false ? true : false;
+        $intencje = get_field('intencje_pogrzebowe');
 
-        $rows = get_field('ogloszenie');
-
-        $i = 1;
-        echo '<ol>';
-        foreach ($rows as $row) {
-            echo '<li>' . nl2br($row['tresc_ogloszenia']);
-            if ($row['tak']) {
-                echo '<ul>';
-                foreach ($row['podpunkt'] as $podpunkt) {
-                    echo '<li>' . nl2br($podpunkt['punktor']) . '</li>';
-                }
-                echo '</ul>';
-            }
-            echo '</li>';
-            $i++;
+        if ($intencje === null) {
+            return;
         }
-        echo '</ol>';
+
+        if (count($intencje) === 0) {
+            return;
+        }
+
+        echo '<div class="table_intentions" role="region" tabindex="0">';
+        echo '<table>
+    <thead>
+        <tr>
+            <th>Za kogo?</th>
+            <th>Ile intencji?</th>
+            <th>Komu przekazano?</th>
+        </tr>
+    </thead>
+    <tbody>
+';
+
+        foreach ($intencje as $intencja) {
+            echo '<tr>';
+            echo '<td>' . $intencja['za_kogo'] . '</td>';
+            echo '<td>' . $intencja['ile_intencji'] . '</td>';
+            echo '<td>' . $intencja['komu_przekazano'] . '</td>';
+        }
+
+        echo '</tbody></table></div>';
 
         if ((current_user_can('administrator') or current_user_can('author') or current_user_can('editor') or current_user_can('contributor')) and $print === false) {
             // Get current URL in any case (also when the page is not pulished)
@@ -60,19 +72,19 @@
         echo '<html>';
         echo '<head>';
         echo '<title>Parafia Tymbark</title>';
-        echo '<link rel="stylesheet" href="/wp-content/themes/parafia-tymbark/style.css?v=20250403001">';
+        echo '<link rel="stylesheet" href="/wp-content/themes/parafia-tymbark/style.css?v=20250404001">';
         echo '</head>';
         echo '<body class="print-print">';
     }
 ?>
 
-<?php if (astra_page_layout() == 'left-sidebar' and $print === false): ?>
+<?php if (astra_page_layout() == 'left-sidebar'): ?>
 
 	<?php get_sidebar(); ?>
 
 <?php endif?>
 
-	<div id="primary"	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                  <?php astra_primary_class(); ?>>
+	<div id="primary"	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                  <?php astra_primary_class(); ?>>
 
 		<?php astra_primary_content_top(); ?>
 
@@ -82,7 +94,7 @@
 
 	</div><!-- #primary -->
 
-<?php if (astra_page_layout() == 'right-sidebar' and $print === false): ?>
+    <?php if (astra_page_layout() == 'right-sidebar' and $print === false): ?>
 
 	<?php get_sidebar(); ?>
 
