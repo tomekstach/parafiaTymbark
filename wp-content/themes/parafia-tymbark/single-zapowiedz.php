@@ -20,23 +20,41 @@
         $print = $_REQUEST['print'] ?? false;
         $print = $print !== false ? true : false;
 
-        $rows = get_field('ogloszenie');
+        echo '<p>Następujące osoby mają zamiar w najbliższym czasie zawrzeć sakramentalne małżeństwo:</p>';
+        $nrZapowiedzi = get_field('nr');
+        $narzeczony   = get_field('narzeczony');
 
-        $i = 1;
-        echo '<ol>';
-        foreach ($rows as $row) {
-            echo '<li>' . nl2br($row['tresc_ogloszenia']);
-            if ($row['tak']) {
-                echo '<ul>';
-                foreach ($row['podpunkt'] as $podpunkt) {
-                    echo '<li>' . nl2br($podpunkt['punktor']) . '</li>';
-                }
-                echo '</ul>';
+        if (strpos($narzeczony, 'z parafii') === false) {
+            if (strpos($narzeczony, 'z&nbsp;parafii') === false) {
+                $narzeczony = '<strong>' . $narzeczony . '</strong>';
+            } else {
+                $narzeczony = '<strong>' . explode('z&nbsp;parafii', $narzeczony)[0] . '</strong> z&nbsp;parafii ' . explode('z&nbsp;parafii', $narzeczony)[1];
             }
-            echo '</li>';
-            $i++;
+        } else {
+            $narzeczony = '<strong>' . explode('z parafii', $narzeczony)[0] . '</strong> z&nbsp;parafii ' . explode('z parafii', $narzeczony)[1];
         }
-        echo '</ol>';
+
+        $narzeczona = get_field('narzeczona');
+        if (strpos($narzeczona, 'z parafii') === false) {
+            if (strpos($narzeczona, 'z&nbsp;parafii') === false) {
+                $narzeczona = '<strong>' . $narzeczona . '</strong>';
+            } else {
+                $narzeczona = '<strong>' . explode('z&nbsp;parafii', $narzeczona)[0] . '</strong> z&nbsp;parafii ' . explode('z&nbsp;parafii', $narzeczona)[1];
+            }
+        } else {
+            $narzeczona = '<strong>' . explode('z parafii', $narzeczona)[0] . '</strong> z&nbsp;parafii ' . explode('z parafii', $narzeczona)[1];
+        }
+
+        if (strlen(trim($nrZapowiedzi)) > 0) {
+            echo '<p>' . $nrZapowiedzi . '</p>';
+        }
+
+        echo '<p>' . $narzeczony . '</p>';
+        echo '<p>i</p>';
+        echo '<p>' . $narzeczona . '</p>';
+        echo '<p>Na podstawie §1066 i §1069 Kodeksu Prawa Kanonicznego: ktokolwiek wiedziałby o&nbsp;przeszkodzie utrudniającej lub uniemożliwiającej zawarcie małżeństwa powinien wyjawić ją w&nbsp;kancelarii parafialnej.</p>';
+        echo '<p><strong><em>Tymbark ' . get_field('data') . '</em></strong></p>';
+        echo '<p>„Administrator danych osobowych informuje, że dane osobowe dotyczące zapowiedzi przedślubnych zawarte na stronie parafii Narodzenia Najświętszej Maryi Panny w&nbsp;Tymbarku umieszczone zostały za zgodą osób, których dane dotyczą”</p>';
 
         if ((current_user_can('administrator') or current_user_can('author') or current_user_can('editor') or current_user_can('contributor')) and $print === false) {
             // Get current URL in any case (also when the page is not pulished)
@@ -72,7 +90,7 @@
 
 <?php endif?>
 
-	<div id="primary"	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                  <?php astra_primary_class(); ?>>
+	<div id="primary"	                 	                 	                 	                 	                 	                 	                 	                  <?php astra_primary_class(); ?>>
 
 		<?php astra_primary_content_top(); ?>
 

@@ -17,9 +17,8 @@
     function custom_astra_content_loop()
     {
         global $wp;
-        $print           = $_REQUEST['print'] ?? false;
-        $print           = $print !== false ? true : false;
-        $intencjeTymbark = get_field('intencje_tymbark');
+        $print = $_REQUEST['print'] ?? false;
+        $print = $print !== false ? true : false;
 
         $dniTygodnia = [
             'Niedziela',
@@ -31,58 +30,53 @@
             'Sobota',
         ];
 
-        echo '<h2 class="int-tym">Intencje Tymbark</h2>';
+        $intencjePiekielko = get_field('intencje_piekielko');
 
-        foreach ($intencjeTymbark as $intencja) {
-            foreach ($intencja as $wpis) {
-                if ($wpis['nowa_strona']) {
-                    $classNewPage = 'new-page';
-                } else {
-                    $classNewPage = '';
-                }
-                echo '<div class="intentions ' . $classNewPage . '">';
-                echo '<div class="day"><p>' . $dniTygodnia[date('w', strtotime($wpis['data']))] . '</p><p>' . $wpis['data'] . '</p></div>';
-                echo '<div class="items">';
-                foreach ($wpis['godzina'] as $godzina) {
-                    echo '<div class="item"><div class="hour">' . $godzina['godzina_mszy'] . '</div>';
-                    echo '<div class="name">';
-                    $i                  = 0;
-                    $poprzedniaZbiorowa = false;
-                    foreach ($godzina['nazwa'] as $nazwa) {
-                        $i++;
-                        if ($i > 1 and $poprzedniaZbiorowa === false) {
-                            $poprzedniaZbiorowa = false;
-                            echo '<br/>';
-                        }
-
-                        if (strpos($nazwa['nazwa_intencji'], 'poza parafią') !== false) {
-                            echo $i . '. <i>' . $nazwa['nazwa_intencji'] . '</i>';
-                        } else {
-                            echo $i . '. ' . $nazwa['nazwa_intencji'];
-                        }
-
-                        if ($nazwa['tak']) {
-                            $poprzedniaZbiorowa = true;
-                            echo '<ul>';
-                            foreach ($nazwa['podpunkt_mz'] as $podpunkt) {
-                                echo '<li>' . $podpunkt['punktor_mz'] . '</li>';
-                            }
-                            echo '</ul>';
-                        }
-                    }
-                    // name
-                    echo '</div>';
-                    // item
-                    echo '</div>';
-                }
-                // items
-                echo '</div>';
-                // intentions
-                echo '</div>';
-            }
+        if ($intencjePiekielko['nowa_strona']) {
+            $classNewPage = 'new-page';
+        } else {
+            $classNewPage = '';
         }
 
-        $intencjaUwagi = get_field('intencja_uwagi');
+        // echo '<h2 class="int-piek ' . $classNewPage . '">Msze św. w kaplicy w Piekiełku</h2>';
+
+        foreach ($intencjePiekielko['intencja_piek'] as $wpis) {
+            if ($wpis['nowa_strona']) {
+                $classNewPage = 'new-page';
+            } else {
+                $classNewPage = '';
+            }
+            echo '<div class="intentions ' . $classNewPage . '">';
+            echo '<div class="day"><p>' . $dniTygodnia[date('w', strtotime($wpis['data']))] . '</p><p>' . $wpis['data'] . '</p></div>';
+            echo '<div class="items">';
+            foreach ($wpis['godzina'] as $godzina) {
+                echo '<div class="item"><div class="hour">' . $godzina['godzina_mszy'] . '</div>';
+                echo '<div class="name">';
+                $i = 0;
+                foreach ($godzina['nazwa'] as $nazwa) {
+                    $i++;
+                    if ($i > 1) {
+                        echo '<br/>';
+                    }
+
+                    if (strpos($nazwa['nazwa_intencji'], 'poza parafią') !== false) {
+                        echo $i . '. <i>' . $nazwa['nazwa_intencji'] . '</i>';
+                    } else {
+                        echo $i . '. ' . $nazwa['nazwa_intencji'];
+                    }
+                }
+                // name
+                echo '</div>';
+                // item
+                echo '</div>';
+            }
+            // items
+            echo '</div>';
+            // intentions
+            echo '</div>';
+        }
+
+        $intencjaUwagi = get_field('intencja_uwagi_piek');
 
         if (is_array($intencjaUwagi)) {
             echo '<h2 class="int-uwagi">Uwagi</h2>';
@@ -128,7 +122,7 @@
 
 <?php endif?>
 
-	<div id="primary"	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                  <?php astra_primary_class(); ?>>
+	<div id="primary"	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                 	                  <?php astra_primary_class(); ?>>
 
 		<?php astra_primary_content_top(); ?>
 
