@@ -38,6 +38,17 @@ function display_pogrzeb_posts()
 
     $pogrzeb_query = new WP_Query($args);
 
+    $dni = [
+        '',
+        'w poniedziałek',
+        'we wtorek',
+        'w środę',
+        'w czwartek',
+        'w piątek',
+        'w sobotę',
+        'w niedzielę',
+    ];
+
     $output = '';
 
     if ($pogrzeb_query->have_posts()) {
@@ -54,8 +65,23 @@ function display_pogrzeb_posts()
                     ';
         while ($pogrzeb_query->have_posts()) {
             $pogrzeb_query->the_post();
-            $content = get_the_content();
-            $content = apply_filters('the_content', $content);
+            $pogrzebID = get_the_ID();
+            $zmarly    = get_field('zmarl', $pogrzebID);
+            if ($zmarly == 'Zmarł') {
+                $zaimek = 'Mu';
+            } else {
+                $zaimek = 'Jej';
+            }
+            $imieNazwisko    = get_field('imie_i_nazwisko', $pogrzebID);
+            $miejscowosc     = get_field('miejscowosc', $pogrzebID);
+            $dataPogrzebu    = get_field('data_pogrzebu', $pogrzebID);
+            $data            = DateTime::createFromFormat('d.m.Y', $dataPogrzebu);
+            $dayOfWeek       = $data->format('N');
+            $godzinaPogrzebu = get_field('godzina_pogrzebu', $pogrzebID);
+            $miejscePogrzebu = get_field('miejsce_pogrzebu', $pogrzebID);
+            $content         = '<p>' . $zmarly . ' śp.&nbsp;+&nbsp;<strong>' . esc_html($imieNazwisko) . '</strong> ' . $miejscowosc . '.</p>';
+            $content .= '<p>Pogrzeb ' . $dni[$dayOfWeek] . ' <strong>' . $dataPogrzebu . '</strong> o godz. <strong>' . $godzinaPogrzebu . '</strong> ' . $miejscePogrzebu . ' (wprowadzenie, różaniec, Msza Św.).</p>';
+            $content .= '<p> – wieczne odpoczywanie racz ' . $zaimek . ' dać Panie!</p>';
             $output .= '<div>' . $content . '</div>';
 
             if ($i < $counter) {
