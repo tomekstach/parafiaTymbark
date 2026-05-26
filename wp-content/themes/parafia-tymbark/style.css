@@ -125,9 +125,11 @@ p.print-button {
 	margin: 10px 0;
 }
 
-h2.int-tym, h2.int-piek, h2.int-uwagi {
-    font-size: 1.2941176470588rem;
-    line-height: 1.3em;
+h2.int-tym,
+h2.int-piek,
+h2.int-uwagi {
+	font-size: 1.2941176470588rem;
+	line-height: 1.3em;
 }
 
 .type-ogloszenie li {
@@ -142,8 +144,8 @@ body.print-print h1 {
 	text-align: center;
 	font-size: 16pt;
 	font-family: 'Book Antiqua - bold', Helvetica, sans-serif;
-    margin-top: 6px;
-    margin-bottom: 6px;
+	margin-top: 6px;
+	margin-bottom: 6px;
 }
 
 body.print-print p,
@@ -165,7 +167,7 @@ body.print-print li {
 }
 
 body.print-print h2.new-page {
-    page-break-before: always;
+	page-break-before: always;
 }
 
 body.print-print h2.int-tym,
@@ -175,12 +177,12 @@ body.print-print h2.int-uwagi {
 
 body.print-print div.intentions {
 	border: 1px solid #000;
-    margin: 10px 0 0 0;
+	margin: 10px 0 0 0;
 }
 
 body.print-print div.items {
-    width: 83%;
-    border-left: 0;
+	width: 83%;
+	border-left: 0;
 }
 
 body.print-print div.intentions.new-page {
@@ -189,26 +191,26 @@ body.print-print div.intentions.new-page {
 
 body.print-print div.day {
 	flex: 1;
-    width: 17%;
+	width: 17%;
 }
 
 body.print-print div.hour {
-    width: 10%;
+	width: 10%;
 }
 
 body.print-print div.item {
 	border-left: 1px solid #000;
-    border-bottom: 1px solid #000;
-    border-top: 0;
+	border-bottom: 1px solid #000;
+	border-top: 0;
 }
 
 body.print-print div.item:last-child {
-    border-bottom: 0;
+	border-bottom: 0;
 }
 
 body.print-print div.intentions ul {
-    margin-top: 0;
-    margin-bottom: 0;
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 body.print-print div.name {
@@ -216,11 +218,24 @@ body.print-print div.name {
 	margin: 0;
 	padding: 5px 10px;
 	border-left: 1px solid #000;
-    width: 90%;
+	width: 90%;
 }
 
 body.print-print div.int-cont-uwagi {
-    margin-top: 20px;
+	margin-top: 20px;
+}
+
+body.print-print .zapowiedz p {
+	font-size: 13pt;
+}
+
+body.print-print .zapowiedz p.rodo,
+body.print-print .zapowiedz p.date {
+	font-size: 11pt;
+}
+
+body.print-print .zapowiedz p.date {
+	margin-top: 30px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -253,7 +268,7 @@ body.print-print div.int-cont-uwagi {
 .table_intentions {
 	overflow: auto;
 	width: 100%;
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 .table_intentions table {
@@ -276,7 +291,7 @@ body.print-print div.int-cont-uwagi {
 	background-color: #f5f5f5;
 	color: #000000;
 	padding: 5px;
-    text-align: center;
+	text-align: center;
 }
 
 .table_intentions td {
@@ -287,7 +302,7 @@ body.print-print div.int-cont-uwagi {
 }
 
 .table_intentions td:nth-child(2) {
-    text-align: center;
+	text-align: center;
 }
 
 .home-box:hover .uagb-ifb-content h2.uagb-ifb-title {

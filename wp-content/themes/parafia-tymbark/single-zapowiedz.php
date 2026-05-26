@@ -53,8 +53,8 @@
         echo '<p>i</p>';
         echo '<p>' . $narzeczona . '</p>';
         echo '<p>Na podstawie §1066 i §1069 Kodeksu Prawa Kanonicznego: ktokolwiek wiedziałby o&nbsp;przeszkodzie utrudniającej lub uniemożliwiającej zawarcie małżeństwa powinien wyjawić ją w&nbsp;kancelarii parafialnej.</p>';
-        echo '<p><strong><em>Tymbark ' . get_field('data') . '</em></strong></p>';
-        echo '<p>„Administrator danych osobowych informuje, że dane osobowe dotyczące zapowiedzi przedślubnych zawarte na stronie parafii Narodzenia Najświętszej Maryi Panny w&nbsp;Tymbarku umieszczone zostały za zgodą osób, których dane dotyczą”</p>';
+        echo '<p class="date"><strong><em>Tymbark ' . get_field('data') . '</em></strong></p>';
+        echo '<p class="rodo">„Administrator danych osobowych informuje, że dane osobowe dotyczące zapowiedzi przedślubnych zawarte na stronie parafii Narodzenia Najświętszej Maryi Panny w&nbsp;Tymbarku umieszczone zostały za zgodą osób, których dane dotyczą”</p>';
 
         if ((current_user_can('administrator') or current_user_can('author') or current_user_can('editor') or current_user_can('contributor')) and $print === false) {
             // Get current URL in any case (also when the page is not pulished)
