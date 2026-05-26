@@ -21,34 +21,32 @@
         $print    = $print !== false ? true : false;
         $intencje = get_field('intencje_pogrzebowe');
 
-        if ($intencje === null) {
-            return;
+        if (empty($intencje)) {
+            $intencje = [];
         }
 
-        if (count($intencje) === 0) {
-            return;
+        if (count($intencje) > 0) {
+            echo '<div class="table_intentions" role="region" tabindex="0">';
+            echo '<table>
+        <thead>
+            <tr>
+                <th>Za kogo?</th>
+                <th>Ile intencji?</th>
+                <th>Komu przekazano?</th>
+            </tr>
+        </thead>
+        <tbody>
+    ';
+
+            foreach ($intencje as $intencja) {
+                echo '<tr>';
+                echo '<td>' . $intencja['za_kogo'] . '</td>';
+                echo '<td>' . $intencja['ile_intencji'] . '</td>';
+                echo '<td>' . $intencja['komu_przekazano'] . '</td>';
+            }
+
+            echo '</tbody></table></div>';
         }
-
-        echo '<div class="table_intentions" role="region" tabindex="0">';
-        echo '<table>
-    <thead>
-        <tr>
-            <th>Za kogo?</th>
-            <th>Ile intencji?</th>
-            <th>Komu przekazano?</th>
-        </tr>
-    </thead>
-    <tbody>
-';
-
-        foreach ($intencje as $intencja) {
-            echo '<tr>';
-            echo '<td>' . $intencja['za_kogo'] . '</td>';
-            echo '<td>' . $intencja['ile_intencji'] . '</td>';
-            echo '<td>' . $intencja['komu_przekazano'] . '</td>';
-        }
-
-        echo '</tbody></table></div>';
 
         if ((current_user_can('administrator') or current_user_can('author') or current_user_can('editor') or current_user_can('contributor')) and $print === false) {
             // Get current URL in any case (also when the page is not pulished)
